@@ -1,1 +1,1 @@
-from .module import greet
+from .module import greet, test
