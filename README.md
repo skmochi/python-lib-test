@@ -13,3 +13,21 @@ pythonのライブラリをpoetryで作るサンプル
 1. `pip install git+https://github.com/skmochi/python-lib-test`を実行
 2. ブランチ指定が必要なら末尾に`@ブランチ名`を追加
 3. `import mylib`から使う
+
+## extrasでパッケージを追加する
+
+参考: https://zenn.dev/hrsma2i/articles/poetry-extras
+
+1. poetry add "tensorflow-gpu=1.14"[gpu] --optional
+2. tomlに追記
+```
+[tool.poetry.extras]
+cpu = ["tensorflow"]
+gpu = ["tensorflow-gpu"]
+```
+3. poetry build して push
+
+これを使うときは
+`poetry add git+https://github.com/skmochi/python-lib-test -E ocr`
+のようにして使う  
+pip installコマンドでgithubからinstallかつextras指定する方法は調べたけどわからなかった
